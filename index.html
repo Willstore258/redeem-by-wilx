@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WILX REEDEM</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --success: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --vip: #9b59b6;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .logo span {
+            color: var(--primary);
+        }
+        .panel {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .panel-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .btn-success {
+            background-color: var(--success);
+        }
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        .btn-danger {
+            background-color: var(--danger);
+        }
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        .btn-warning {
+            background-color: var(--warning);
+        }
+        .btn-warning:hover {
+            background-color: #d35400;
+        }
+        .btn-vip {
+            background-color: var(--vip);
+        }
+        .btn-vip:hover {
+            background-color: #8e44ad;
+        }
+        .whatsapp-btn {
+            background-color: #25D366;
+        }
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+        }
+        .message {
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            display: none;
+        }
+        .message-success {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: #27ae60;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            display: block;
+        }
+        .message-error {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #c0392b;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: var(--light);
+            font-weight: 500;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .badge-primary {
+            background-color: rgba(52, 152, 219, 0.2);
+            color: var(--primary);
+        }
+        .badge-success {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success);
+        }
+        .badge-danger {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--danger);
+        }
+        .badge-warning {
+            background-color: rgba(243, 156, 18, 0.2);
+            color: var(--warning);
+        }
+        .badge-vip {
+            background-color: rgba(155, 89, 182, 0.2);
+            color: var(--vip);
+        }
+        .hidden {
+            display: none;
+        }
+        .tab-container {
+            margin-bottom: 20px;
+        }
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #7f8c8d;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            font-weight: 500;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .owner-contact {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .reward-animation {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .reward-item {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--primary);
+        }
+        .reward-item.vip {
+            border-left-color: var(--vip);
+            background-color: rgba(155, 89, 182, 0.1);
+        }
+        .reward-item.premium {
+            border-left-color: var(--warning);
+            background-color: rgba(243, 156, 18, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">WILX<span>REEDEM</span></div>
+            <p>Sistem redeem code voucher untuk member WILX</p>
+        </header>
+
+        <div class="tab-container">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="openTab('redeem')">Redeem Code</button>
+                <button class="tab-btn" onclick="openTab('admin')" id="adminTab">Admin Panel</button>
+                <button class="tab-btn" onclick="openTab('reseller')" id="resellerTab">Reseller Panel</button>
+            </div>
+
+            <div id="redeem" class="tab-content active">
+                <div class="panel">
+                    <h2 class="panel-title">Redeem Code Anda</h2>
+                    <div class="form-group">
+                        <label for="userCode">Masukkan Code Voucher</label>
+                        <input type="text" id="userCode" placeholder="Contoh: WILX100">
+                    </div>
+                    <button class="btn-success" onclick="redeemUserCode()">
+                        Redeem Sekarang
+                    </button>
+                    <div id="redeemMessage" class="message"></div>
+                    <div id="rewardDisplay" class="hidden">
+                        <h3 style="margin-top: 20px;">Selamat! Anda Mendapatkan:</h3>
+                        <div id="rewardItem" class="reward-item"></div>
+                    </div>
+                </div>
+
+                <div class="owner-contact">
+                    <p>Tidak memiliki code? Hubungi owner kami:</p>
+                    <a href="https://wa.me/6283175501824" target="_blank">
+                        <button class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Owner
+                        </button>
+                    </a>
+                    <p style="margin-top: 10px; font-size: 14px;">6283175501824</p>
+                </div>
+            </div>
+
+            <div id="admin" class="tab-content">
+                <div class="panel">
+                    <h2 class="panel-title">Admin Panel</h2>
+                    <div class="form-group">
+                        <label for="adminPass">Password Admin</label>
+                        <input type="password" id="adminPass" placeholder="Masukkan password admin">
+                    </div>
+                    <button onclick="verifyAdmin()">Masuk</button>
+                    <div id="adminMessage" class="message"></div>
+                </div>
+
+                <div id="adminPanel" class="hidden">
+                    <div class="panel">
+                        <h2 class="panel-title">Generate Code Baru</h2>
+                        <div class="form-group">
+                            <label for="codePrefix">Prefix Code</label>
+                            <input type="text" id="codePrefix" value="WILX" placeholder="Contoh: WILX">
+                        </div>
+                        <div class="form-group">
+                            <label for="rewardType">Tipe Hadiah</label>
+                            <select id="rewardType">
+                                <option value="random">Random Reward</option>
+                                <option value="admin_panel">Admin Panel</option>
+                                <option value="reseller_panel">Reseller Panel</option>
+                                <option value="nika_v9">Nika V9 Gen 2</option>
+                                <option value="vip">VIP Access</option>
+                                <option value="saldo">Saldo Digital</option>
+                                <option value="discount">Discount Voucher</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="valueField">
+                            <label for="codeValue">Nilai Hadiah (Rp)</label>
+                            <input type="number" id="codeValue" placeholder="Contoh: 100000">
+                        </div>
+                        <div class="form-group">
+                            <label for="codeExpiry">Tanggal Expired</label>
+                            <input type="date" id="codeExpiry">
+                        </div>
+                        <div class="form-group">
+                            <label for="codeQuantity">Jumlah Code</label>
+                            <input type="number" id="codeQuantity" value="1" min="1" max="100">
+                        </div>
+                        <button class="btn-success" onclick="generateCodes()">Generate Code</button>
+                        <div id="generatedCodes" class="form-group"></div>
+                    </div>
+
+                    <div class="panel">
+                        <h2 class="panel-title">Database Voucher Codes</h2>
+                        <div class="form-group">
+                            <input type="text" id="searchCode" placeholder="Cari code..." oninput="filterCodes()">
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table id="codesTable">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Hadiah</th>
+                                        <th>Tipe</th>
+                                        <th>Status</th>
+                                        <th>Expired</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="codesList">
+                                    <!-- Codes will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reseller" class="tab-content">
+                <div class="panel">
+                    <h2 class="panel-title">Reseller Panel</h2>
+                    <div class="form-group">
+                        <label for="resellerPass">Password Reseller</label>
+                        <input type="password" id="resellerPass" placeholder="Masukkan password reseller">
+                    </div>
+                    <button class="btn-vip" onclick="verifyReseller()">Masuk</button>
+                    <div id="resellerMessage" class="message"></div>
+                </div>
+
+                <div id="resellerPanel" class="hidden">
+                    <div class="panel">
+                        <h2 class="panel-title">Generate Code Reseller</h2>
+                        <div class="form-group">
+                            <label for="resellerCodePrefix">Prefix Code</label>
+                            <input type="text" id="resellerCodePrefix" value="WILXRS" placeholder="Contoh: WILXRS">
+                        </div>
+                        <div class="form-group">
+                            <label for="resellerRewardType">Tipe Hadiah</label>
+                            <select id="resellerRewardType">
+                                <option value="reseller_panel">Reseller Panel</option>
+                                <option value="discount">Discount 50%</option>
+                                <option value="premium">Premium Access</option>
+                                <option value="random">Random Reward</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="resellerCodeQuantity">Jumlah Code</label>
+                            <input type="number" id="resellerCodeQuantity" value="1" min="1" max="50">
+                        </div>
+                        <button class="btn-vip" onclick="generateResellerCodes()">Generate Code</button>
+                        <div id="resellerGeneratedCodes" class="form-group"></div>
+                    </div>
+
+                    <div class="panel">
+                        <h2 class="panel-title">Code Reseller Anda</h2>
+                        <div style="overflow-x: auto;">
+                            <table id="resellerCodesTable">
+                                <thead>
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Hadiah</th>
+                                        <th>Status</th>
+                                        <th>Expired</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resellerCodesList">
+                                    <!-- Reseller codes will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script>
+        // Initialize database in localStorage if not exists
+        if (!localStorage.getItem('voucherCodes')) {
+            const initialCodes = {
+                "WILX100": { 
+                    reward: "Admin Panel 1 Bulan",
+                    type: "admin_panel", 
+                    value: 0,
+                    used: false, 
+                    createdAt: new Date().toISOString(),
+                    expiredAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+                },
+                "WILX250": { 
+                    reward: "Reseller Panel",
+                    type: "reseller_panel", 
+                    value: 0,
+                    used: false,
+                    createdAt: new Date().toISOString(),
+                    expiredAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+                },
+                "WILX500": { 
+                    reward: "Nika V9 Gen 2",
+                    type: "nika_v9", 
+                    value: 0,
+                    used: false,
+                    createdAt: new Date().toISOString(),
+                    expiredAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
+                },
+                "WILXVIP": {
+                    reward: "VIP Access 3 Bulan",
+                    type: "vip",
+                    value: 0,
+                    used: false,
+                    createdAt: new Date().toISOString(),
+                    expiredAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000).toISOString()
+                }
+            };
+            localStorage.setItem('voucherCodes', JSON.stringify(initialCodes));
+        }
+
+        // Initialize redeemed codes if not exists
+        if (!localStorage.getItem('redeemedCodes')) {
+            localStorage.setItem('redeemedCodes', JSON.stringify({}));
+        }
+
+        // Initialize reseller codes if not exists
+        if (!localStorage.getItem('resellerCodes')) {
+            localStorage.setItem('resellerCodes', JSON.stringify({}));
+        }
+
+        // Password configuration
+        const PASSWORD_CONFIG = {
+            admin: "wilxowner123",
+            reseller: "wilxreseller456"
+        };
+
+        // Reward configuration
+        const REWARDS = {
+            admin_panel: [
+                "Admin Panel 1 Bulan",
+                "Admin Panel 3 Bulan",
+                "Admin Panel Lifetime"
+            ],
+            reseller_panel: [
+                "Reseller Panel Basic",
+                "Reseller Panel Pro",
+                "Reseller Panel VIP"
+            ],
+            nika_v9: [
+                "Nika V9 Gen 2",
+                "Nika V9 Premium",
+                "Nika V9 Lifetime License"
+            ],
+            vip: [
+                "VIP Access 1 Bulan",
+                "VIP Access 3 Bulan",
+                "VIP Lifetime Membership"
+            ],
+            saldo: [
+                "Saldo Digital Rp 50.000",
+                "Saldo Digital Rp 100.000",
+                "Saldo Digital Rp 250.000",
+                "Saldo Digital Rp 500.000"
+            ],
+            discount: [
+                "Discount 20%",
+                "Discount 30%",
+                "Discount 50%",
+                "Discount 70%"
+            ],
+            random: [
+                "Admin Panel 1 Bulan",
+                "Reseller Panel Basic",
+                "Nika V9 Gen 2",
+                "VIP Access 1 Bulan",
+                "Saldo Digital Rp 100.000",
+                "Discount 30%",
+                "Premium Tools Package",
+                "Exclusive Member Access"
+            ]
+        };
+
+        // Format currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(amount);
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('id-ID', options);
+        }
+
+        // Show message
+        function showMessage(elementId, text, isSuccess) {
+            const element = document.getElementById(elementId);
+            element.textContent = text;
+            element.className = isSuccess ? 'message message-success' : 'message message-error';
+            
+            if (isSuccess) {
+                setTimeout(() => {
+                    element.className = 'message';
+                    element.textContent = '';
+                }, 5000);
+            }
+        }
+
+        // Get random reward
+        function getRandomReward(type) {
+            const rewards = REWARDS[type] || REWARDS.random;
+            return rewards[Math.floor(Math.random() * rewards.length)];
+        }
+
+        // Display reward animation
+        function displayReward(reward, type) {
+            const rewardDisplay = document.getElementById('rewardDisplay');
+            const rewardItem = document.getElementById('rewardItem');
+            
+            rewardItem.innerHTML = `
+                <h3 class="reward-animation" style="color: ${getRewardColor(type)};">${reward}</h3>
+                <p>Silahkan screenshot halaman ini sebagai bukti dan hubungi admin</p>
+            `;
+            
+            if (type === 'vip' || type === 'nika_v9') {
+                rewardItem.className = 'reward-item vip';
+            } else if (type === 'admin_panel' || type === 'reseller_panel') {
+                rewardItem.className = 'reward-item premium';
+            } else {
+                rewardItem.className = 'reward-item';
+            }
+            
+            rewardDisplay.classList.remove('hidden');
+        }
+
+        // Get reward color
+        function getRewardColor(type) {
+            switch(type) {
+                case 'admin_panel': return '#3498db';
+                case 'reseller_panel': return '#f39c12';
+                case 'nika_v9': return '#9b59b6';
+                case 'vip': return '#e74c3c';
+                case 'saldo': return '#2ecc71';
+                case 'discount': return '#1abc9c';
+                default: return '#2c3e50';
+            }
+        }
+
+        // Redeem user code
+        function redeemUserCode() {
+            const code = document.getElementById('userCode').value.trim().toUpperCase();
+            const voucherCodes = JSON.parse(localStorage.getItem('voucherCodes') || '{}');
+            const redeemedCodes = JSON.parse(localStorage.getItem('redeemedCodes') || '{}');
+            
+            if (!code) {
+                showMessage('redeemMessage', 'Silahkan masukkan code voucher', false);
+                return;
+            }
+            
+            if (!voucherCodes[code]) {
+                showMessage('redeemMessage', 'Code voucher tidak valid', false);
+                return;
+            }
+            
+            if (redeemedCodes[code]) {
+                showMessage('redeemMessage', 'Code voucher sudah digunakan', false);
+                return;
+            }
+            
+            const now = new Date();
+            const expiredDate = new Date(voucherCodes[code].expiredAt);
+            if (now > expiredDate) {
+                showMessage('redeemMessage', 'Code voucher sudah expired', false);
+                return;
+            }
+            
+            // Mark as redeemed
+            redeemedCodes[code] = {
+                redeemedAt: new Date().toISOString(),
+                reward: voucherCodes[code].reward,
+                type: voucherCodes[code].type
+            };
+            localStorage.setItem('redeemedCodes', JSON.stringify(redeemedCodes));
+            
+            // Display reward
+            displayReward(voucherCodes[code].reward, voucherCodes[code].type);
+            
+            // Show success message
+            showMessage('redeemMessage', '🎉 Redeem berhasil! Lihat hadiah Anda di bawah', true);
+            
+            // Clear input
+            document.getElementById('userCode').value = '';
+            
+            // Refresh codes table if admin is viewing
+            if (!document.getElementById('adminPanel').classList.contains('hidden')) {
+                loadCodesTable();
+            }
+            
+            // Refresh reseller codes if reseller is viewing
+            if (!document.getElementById('resellerPanel').classList.contains('hidden')) {
+                loadResellerCodesTable();
+            }
+        }
+
+        // Verify admin password
+        function verifyAdmin() {
+            const password = document.getElementById('adminPass').value;
+            
+            if (password === PASSWORD_CONFIG.admin) {
+                document.getElementById('adminPanel').classList.remove('hidden');
+                document.getElementById('adminPass').value = '';
+                showMessage('adminMessage', 'Admin berhasil login', true);
+                loadCodesTable();
+            } else {
+                showMessage('adminMessage', 'Password admin salah', false);
+            }
+        }
+
+        // Verify reseller password
+        function verifyReseller() {
+            const password = document.getElementById('resellerPass').value;
+            
+            if (password === PASSWORD_CONFIG.reseller) {
+                document.getElementById('resellerPanel').classList.remove('hidden');
+                document.getElementById('resellerPass').value = '';
+                showMessage('resellerMessage', 'Reseller berhasil login', true);
+                loadResellerCodesTable();
+            } else {
+                showMessage('resellerMessage', 'Password reseller salah', false);
+            }
+        }
+
+        // Generate new codes
+        function generateCodes() {
+            const prefix = document.getElementById('codePrefix').value.trim().toUpperCase();
+            const rewardType = document.getElementById('rewardType').value;
+            const value = parseInt(document.getElementById('codeValue').value) || 0;
+            const expiry = document.getElementById('codeExpiry').value;
+            const quantity = parseInt(document.getElementById('codeQuantity').value);
+            
+            if (!prefix || isNaN(quantity) || quantity <= 0) {
+                alert('Silahkan isi semua field dengan benar');
+                return;
+            }
+            
+            const voucherCodes = JSON.parse(localStorage.getItem('voucherCodes') || '{}');
+            const newCodes = [];
+            const now = new Date().toISOString();
+            const expiredAt = expiry ? new Date(expiry).toISOString() : new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+            
+            for (let i = 0; i < quantity; i++) {
+                const randomNum = Math.floor(100 + Math.random() * 900); // 100-999
+                const code = prefix + randomNum;
+                
+                if (!voucherCodes[code]) {
+                    const reward = rewardType === 'random' ? 
+                        getRandomReward('random') : 
+                        getRandomReward(rewardType);
+                    
+                    voucherCodes[code] = {
+                        reward: reward,
+                        type: rewardType,
+                        value: value,
+                        used: false,
+                        createdAt: now,
+                        expiredAt: expiredAt
+                    };
+                    newCodes.push({code, reward});
+                } else {
+                    i--; // Try again if code exists
+                }
+            }
+            
+            localStorage.setItem('voucherCodes', JSON.stringify(voucherCodes));
+            
+            // Display generated codes
+            let codesHtml = '<h3>Code yang di-generate:</h3>';
+            codesHtml += '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; margin-top: 15px;">';
+            newCodes.forEach(item => {
+                codesHtml += `
+                    <div style="padding: 10px; border: 1px solid #eee; border-radius: 6px;">
+                        <div><strong>${item.code}</strong></div>
+                        <div>${item.reward}</div>
+                    </div>
+                `;
+            });
+            codesHtml += '</div>';
+            codesHtml += `<p style="margin-top: 10px;">Total: ${quantity} code</p>`;
+            
+            document.getElementById('generatedCodes').innerHTML = codesHtml;
+            loadCodesTable();
+        }
+
+        // Generate reseller codes
+        function generateResellerCodes() {
+            const prefix = document.getElementById('resellerCodePrefix').value.trim().toUpperCase();
+            const rewardType = document.getElementById('resellerRewardType').value;
+            const quantity = parseInt(document.getElementById('resellerCodeQuantity').value);
+            
+            if (!prefix || isNaN(quantity) || quantity <= 0) {
+                alert('Silahkan isi semua field dengan benar');
+                return;
+            }
+            
+            const resellerCodes = JSON.parse(localStorage.getItem('resellerCodes') || '{}');
+            const voucherCodes = JSON.parse(localStorage.getItem('voucherCodes') || '{}');
+            const newCodes = [];
+            const now = new Date().toISOString();
+            const expiredAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+            
+            for (let i = 0; i < quantity; i++) {
+                const randomNum = Math.floor(100 + Math.random() * 900); // 100-999
+                const code = prefix + randomNum;
+                
+                if (!resellerCodes[code] && !voucherCodes[code]) {
+                    const reward = rewardType === 'random' ? 
+                        getRandomReward('random') : 
+                        getRandomReward(rewardType);
+                    
+                    resellerCodes[code] = {
+                        reward: reward,
+                        type: rewardType,
+                        value: 0,
+                        used: false,
+                        createdAt: now,
+                        expiredAt: expiredAt,
+                        generatedBy: "reseller"
+                    };
+                    newCodes.push({code, reward});
+                } else {
+                    i--; // Try again if code exists
+                }
+            }
+            
+            localStorage.setItem('resellerCodes', JSON.stringify(resellerCodes));
+            
+            // Display generated codes
+            let codesHtml = '<h3>Code Reseller yang di-generate:</h3>';
+            codesHtml += '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; margin-top: 15px;">';
+            newCodes.forEach(item => {
+                codesHtml += `
+                    <div style="padding: 10px; border: 1px solid #eee; border-radius: 6px;">
+                        <div><strong>${item.code}</strong></div>
+                        <div>${item.reward}</div>
+                    </div>
+                `;
+            });
+            codesHtml += '</div>';
+            codesHtml += `<p style="margin-top: 10px;">Total: ${quantity} code reseller</p>`;
+            
+            document.getElementById('resellerGeneratedCodes').innerHTML = codesHtml;
+            loadResellerCodesTable();
+        }
+
+        // Load codes into table
+        function loadCodesTable() {
+            const voucherCodes = JSON.parse(localStorage.getItem('voucherCodes') || '{}');
+            const redeemedCodes = JSON.parse(localStorage.getItem('redeemedCodes') || '{}');
+            const tbody = document.getElementById('codesList');
+            tbody.innerHTML = '';
+            
+            const now = new Date();
+            
+            Object.entries(voucherCodes).forEach(([code, details]) => {
+                const isUsed = redeemedCodes[code];
+                const isExpired = new Date(details.expiredAt) < now;
+                const status = isUsed ? 'Used' : isExpired ? 'Expired' : 'Active';
+                
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td><strong>${code}</strong></td>
+                    <td>${details.reward}</td>
+                    <td><span class="badge badge-${getBadgeClass(details.type)}">${details.type.toUpperCase()}</span></td>
+                    <td><span class="badge badge-${getStatusClass(status)}">${status}</span></td>
+                    <td>${formatDate(details.expiredAt)}</td>
+                    <td>
+                        <button class="btn-danger" style="padding: 5px 10px; font-size: 14px;" onclick="deleteCode('${code}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+        }
+
+        // Load reseller codes into table
+        function loadResellerCodesTable() {
+            const resellerCodes = JSON.parse(localStorage.getItem('resellerCodes') || '{}');
+            const redeemedCodes = JSON.parse(localStorage.getItem('redeemedCodes') || '{}');
+            const tbody = document.getElementById('resellerCodesList');
+            tbody.innerHTML = '';
+            
+            const now = new Date();
+            
+            Object.entries(resellerCodes).forEach(([code, details]) => {
+                const isUsed = redeemedCodes[code];
+                const isExpired = new Date(details.expiredAt) < now;
+                const status = isUsed ? 'Used' : isExpired ? 'Expired' : 'Active';
+                
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td><strong>${code}</strong></td>
+                    <td>${details.reward}</td>
+                    <td><span class="badge badge-${getStatusClass(status)}">${status}</span></td>
+                    <td>${formatDate(details.expiredAt)}</td>
+                `;
+                
+                tbody.appendChild(row);
+            });
+        }
+
+        // Get badge class based on type
+        function getBadgeClass(type) {
+            switch(type) {
+                case 'admin_panel': return 'primary';
+                case 'reseller_panel': return 'warning';
+                case 'nika_v9': return 'vip';
+                case 'vip': return 'danger';
+                case 'saldo': return 'success';
+                case 'discount': return 'primary';
+                case 'random': return 'success';
+                default: return 'primary';
+            }
+        }
+
+        // Get status class
+        function getStatusClass(status) {
+            switch(status) {
+                case 'Active': return 'success';
+                case 'Used': return 'danger';
+                case 'Expired': return 'warning';
+                default: return 'primary';
+            }
+        }
+
+        // Delete code
+        function deleteCode(code) {
+            if (confirm(`Apakah Anda yakin ingin menghapus code ${code}?`)) {
+                const voucherCodes = JSON.parse(localStorage.getItem('voucherCodes') || '{}');
+                delete voucherCodes[code];
+                localStorage.setItem('voucherCodes', JSON.stringify(voucherCodes));
+                loadCodesTable();
+            }
+        }
+
+        // Filter codes
+        function filterCodes() {
+            const searchTerm = document.getElementById('searchCode').value.toLowerCase();
+            const rows = document.getElementById('codesList').getElementsByTagName('tr');
+            
+            for (let row of rows) {
+                const code = row.cells[0].textContent.toLowerCase();
+                row.style.display = code.includes(searchTerm) ? '' : 'none';
+            }
+        }
+
+        // Tab navigation
+        function openTab(tabName) {
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let tab of tabContents) {
+                tab.classList.remove('active');
+            }
+            
+            const tabButtons = document.getElementsByClassName('tab-btn');
+            for (let button of tabButtons) {
+                button.classList.remove('active');
+            }
+            
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Toggle value field based on reward type
+        document.getElementById('rewardType').addEventListener('change', function() {
+            const valueField = document.getElementById('valueField');
+            if (this.value === 'saldo') {
+                valueField.style.display = 'block';
+            } else {
+                valueField.style.display = 'none';
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if admin/reseller tab should be hidden (for normal users)
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') !== 'true') {
+                document.getElementById('adminTab').style.display = 'none';
+            }
+            if (urlParams.get('reseller') !== 'true') {
+                document.getElementById('resellerTab').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
